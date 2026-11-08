@@ -1,61 +1,21 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>职位页变更提醒 · 支持与隐私</title>
-<style>
-  :root{--bg:#0b1017;--card:#121a24;--line:#1f2a38;--fg:#dbe6f5;--dim:#8fa3ba;--blue:#6ea8fe;--green:#2ee6a8}
-  *{box-sizing:border-box}
-  body{margin:0;background:radial-gradient(1200px 600px at 50% -10%,#16243a 0%,#0b1017 60%);
-       color:var(--fg);font:15px/1.7 -apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",system-ui,sans-serif}
-  .wrap{max-width:720px;margin:0 auto;padding:64px 22px 80px}
-  .logo{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,#7fb2ff,#4d8ef7);
-        display:grid;place-items:center;font-size:26px;margin-bottom:20px}
-  h1{font-size:24px;margin:0 0 8px}
-  .tag{color:var(--dim);margin-bottom:30px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:16px 0}
-  .card h2{font-size:15px;margin:0 0 8px;color:#fff}
-  .card p{margin:0;color:#c2d2e6;font-size:14px}
-  a{color:var(--blue)}
-  .ok{color:var(--green)}
-  footer{margin-top:40px;color:var(--dim);font-size:12.5px}
-  ul{padding-left:18px;color:#c2d2e6;font-size:14px}
-</style>
+<title>JobWatch · 职位页变更提醒</title>
+<script>
+  // 按浏览器语言分流；用户也可以手动选
+  (function(){
+    var zh = /^zh/i.test(navigator.language || '') || /^zh/i.test((navigator.languages||[])[0] || '');
+    location.replace(zh ? './index.zh.html' : './index.en.html');
+  })();
+</script>
+<style>body{background:#0b1017;color:#dbe6f5;font:15px/1.7 system-ui;padding:60px 24px;text-align:center}
+a{color:#6ea8fe;margin:0 10px}</style>
 </head>
 <body>
-<div class="wrap">
-  <div class="logo">🔔</div>
-  <h1>职位页变更提醒</h1>
-  <div class="tag">在招聘页框一块区域，岗位一变就收到通知。数据只存本机，不上传。</div>
-
-  <div class="card">
-    <h2>隐私政策</h2>
-    <p>完整说明在这里：<a href="./privacy.html">隐私政策</a>。<br>
-       <span class="ok">没有服务器、没有账号、没有上传</span>——监控项和变更历史都在你自己的浏览器里。</p>
-  </div>
-
-  <div class="card">
-    <h2>怎么用</h2>
-    <ul>
-      <li>装好后打开一个招聘页，点扩展图标 → 选「监控当前页的某个区域」</li>
-      <li>鼠标悬停在岗位列表上，高亮后点一下，给它起个名字，选检查间隔</li>
-      <li>之后打开这个页面，内容变了就弹通知，并在扩展里留一条记录</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2>适用范围（请先看这条）</h2>
-    <p>支持<b>公司官网、自建招聘页</b>（含 Greenhouse、Lever 这类托管页，由你自行判断）。<br>
-       <b>LinkedIn、Indeed 不支持</b>：它们的用户协议禁止第三方插件读取或改造页面，请不要在这些站点使用。</p>
-  </div>
-
-  <div class="card">
-    <h2>联系我们</h2>
-    <p>问题、建议、bug：<a href="mailto:zzhlmgj@gmail.com">zzhlmgj@gmail.com</a></p>
-  </div>
-
-  <footer>© 2026 zzehui · 本页为静态页面，不含跟踪脚本</footer>
-</div>
+  <p>JobWatch · 职位页变更提醒</p>
+  <p><a href="./index.zh.html">中文</a><a href="./index.en.html">English</a></p>
 </body>
 </html>
