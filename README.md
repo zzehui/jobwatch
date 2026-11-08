@@ -10,24 +10,24 @@
 | 项 | 值 |
 |---|---|
 | GitHub 用户名 | `zzehui` |
-| 建议仓库名 | `job-alert` |
-| 隐私政策网址 | `https://zzehui.github.io/job-alert/privacy.html` |
+| 建议仓库名 | `jobwatch` |
+| 隐私政策网址 | `https://zzehui.github.io/jobwatch/privacy.html` |
 | 商店后台填的联系邮箱 | `zzhlmgj@gmail.com` |
 
-> 仓库名如果不想用 `job-alert`，把下面的 `job-alert` 全部替换掉，同时把最终 URL 告诉我，我改文档。
+> 仓库名如果不想用 `jobwatch`，把下面的 `jobwatch` 全部替换掉，同时把最终 URL 告诉我，我改文档。
 
 ## 发布（在本目录下执行，3 条命令）
 
 ```bash
 cd knowledge/operations/store/privacy-site
 git init -b main && git add . && git commit -m "privacy policy for Chrome extension"
-# 先在 GitHub 网页上建一个 public 仓库 job-alert（不要勾 README），然后：
-git remote add origin https://github.com/zzehui/job-alert.git
+# 先在 GitHub 网页上建一个 public 仓库 jobwatch（不要勾 README），然后：
+git remote add origin https://github.com/zzehui/jobwatch.git
 git push -u origin main
 ```
 
 推送后到仓库 **Settings → Pages**：Source 选 `Deploy from a branch`，Branch 选 `main` / `root`，保存。
-等 1-2 分钟，访问 `https://zzehui.github.io/job-alert/privacy.html` 确认能打开。
+等 1-2 分钟，访问 `https://zzehui.github.io/jobwatch/privacy.html` 确认能打开。
 
 ## 验证清单（我做，或你做完我复核）
 
