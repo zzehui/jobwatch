@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>隐私政策 · 职位页变更提醒</title>
+<style>
+  :root{--bg:#0b1017;--card:#121a24;--line:#1f2a38;--fg:#dbe6f5;--dim:#8fa3ba;--blue:#6ea8fe}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.75 -apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+  .wrap{max-width:760px;margin:0 auto;padding:56px 22px 80px}
+  h1{font-size:26px;margin:0 0 6px}
+  .sub{color:var(--dim);font-size:13px;margin-bottom:34px}
+  h2{font-size:17px;margin:34px 0 10px;padding-top:18px;border-top:1px solid var(--line)}
+  p,li{color:#c8d6e8}
+  ul{padding-left:20px}
+  code{background:#0e1620;border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:13px}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:18px 0}
+  .box b{color:#fff}
+  a{color:var(--blue)}
+  .en{font-size:13.5px;color:var(--dim)}
+  footer{margin-top:44px;color:var(--dim);font-size:12.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>隐私政策</h1>
+  <div class="sub">职位页变更提醒（Chrome 扩展）· 版本 0.2.0 · 生效日期 2026-11-08</div>
+
+  <div class="box">
+    <b>一句话：</b>这个扩展没有服务器。你框选的页面内容、变更记录，全部只存在你自己的浏览器里，
+    不上传、不共享、不出售。
+  </div>
+
+  <h2>1. 这个扩展做什么</h2>
+  <p>
+    你在任意招聘页面上框选一块区域（比如"岗位列表"），扩展会把它记下来。
+    之后你打开这个页面时，它会检查这块区域的文字有没有变化；变了就弹一条浏览器通知，
+    并在扩展里留一条变更历史。
+  </p>
+
+  <h2>2. 收集哪些数据</h2>
+  <p>只在你本机（<code>chrome.storage.local</code>）保存以下几类，全部由你的操作产生：</p>
+  <ul>
+    <li>监控项：页面地址、你框选区域的定位方式（CSS 选择器）、你起的名字、检查间隔</li>
+    <li>上次检查时的文本快照或它的哈希值（用来判断"变没变"）</li>
+    <li>变更历史：时间、变化的摘要</li>
+    <li>设置项：通知开关、检查间隔等</li>
+  </ul>
+  <p><b>不收集：</b>浏览历史、账号、密码、Cookie、通讯录、位置、设备标识；
+  不做用户画像，不做广告投放，不做信用评估。</p>
+
+  <h2>3. 数据去哪里</h2>
+  <p>
+    没有"去哪里"——扩展不含任何后端服务，不发任何网络请求把数据送出你的设备。
+    唯一的网络访问是：你在某个网站点了"开始监控"后，扩展需要在该页面读取你框选的那块区域，
+    这需要你对该站点授权（见第 4 条）。
+  </p>
+
+  <h2>4. 权限用途</h2>
+  <ul>
+    <li><code>storage</code>：保存监控项、快照和历史</li>
+    <li><code>alarms</code>：按你设的间隔（15/30/60 分钟）触发检查</li>
+    <li><code>notifications</code>：检测到变化时弹系统通知</li>
+    <li><code>scripting</code> + <code>activeTab</code>：在你当前打开的页面上读取框选区域的文字</li>
+    <li>可选站点权限（<code>http://*/*</code>、<code>https://*/*</code>）：只在你点"开始监控"时对该站点申请，用于后台定时检查；
+        你可以随时在 Chrome 的扩展设置里撤销</li>
+  </ul>
+
+  <h2>5. 删除你的数据</h2>
+  <ul>
+    <li>在扩展里删除单条监控、清空变更历史</li>
+    <li>卸载扩展 → Chrome 会一并清除它的本地数据</li>
+    <li>因为不存在服务端副本，删除即彻底删除</li>
+  </ul>
+
+  <h2>6. 第三方</h2>
+  <p>不接入任何统计、广告、崩溃上报 SDK，不向第三方转让或共享数据。</p>
+
+  <h2>7. 支持的网站</h2>
+  <p>
+    扩展只应在<b>公司官网、自建招聘页</b>这类允许自动化访问的页面上使用。
+    <b>LinkedIn、Indeed 等站点在其用户协议中禁止第三方插件读取或改造页面，请不要在这些站点使用本扩展。</b>
+    这一点也写在商店说明里。
+  </p>
+
+  <h2>8. 儿童</h2>
+  <p>本扩展面向求职者，不面向 13 岁以下儿童，也不会有意处理儿童数据。</p>
+
+  <h2>9. 政策变更</h2>
+  <p>若数据处理方式发生变化，会更新本页并修改顶部生效日期；重大变化会在扩展更新说明里提示。</p>
+
+  <h2>10. 联系方式</h2>
+  <p>开发者：zzehui（个人开发者）<br>
+     邮箱：<a href="mailto:zzhlmgj@gmail.com">zzhlmgj@gmail.com</a></p>
+
+  <h2>Limited Use（英文，Chrome 应用商店要求）</h2>
+  <p class="en">
+    The use of information received from Google APIs will adhere to the
+    <a href="https://developer.chrome.com/docs/webstore/program-policies/user-data-faq">Chrome Web Store User Data Policy</a>,
+    including the Limited Use requirements.
+  </p>
+  <p class="en">
+    This extension does not transfer user data to any server, does not sell it, and does not use it
+    for advertising, profiling, or any purpose unrelated to the single purpose described above.
+  </p>
+
+  <footer>© 2026 zzehui · 本页为静态页面，不含跟踪脚本 · <a href="./index.html">返回首页</a></footer>
+</div>
+</body>
+</html>
