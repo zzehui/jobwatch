@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>星河科技 · 社会招聘</title>
+<style>
+  :root{--ink:#111827;--muted:#6b7280;--line:#e5e7eb;--brand:#1f6feb}
+  *{box-sizing:border-box}
+  body{margin:0;font:15px/1.65 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:#f7f8fa}
+  header{background:#0f172a;color:#fff;padding:26px 0}
+  .wrap{max-width:860px;margin:0 auto;padding:0 20px}
+  header .logo{display:flex;align-items:center;gap:10px;font-size:17px;font-weight:700}
+  .dot{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,#3b82f6,#22d3ee)}
+  header p{margin:6px 0 0;color:#94a3b8;font-size:13px}
+  main{padding:28px 0 60px}
+  h1{font-size:22px;margin:0 0 6px}
+  .sub{color:var(--muted);font-size:13px;margin-bottom:20px}
+  .toolbar{display:flex;gap:8px;margin-bottom:16px}
+  .chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 12px;font-size:12.5px;color:#374151}
+  .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  ul#job-list{list-style:none;padding:0;margin:0}
+  ul#job-list li{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+  .t{font-weight:600}
+  .m{color:var(--muted);font-size:13px}
+  .go{color:var(--brand);font-size:13px}
+  .mutate{margin-top:18px;padding:8px 14px;border:1px solid var(--line);background:#fff;border-radius:8px;cursor:pointer;font-size:13px;color:#6b7280}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="logo"><span class="dot"></span> 星河科技</div>
+  <p>StarRiver Tech · 让自动化跑得更远</p>
+</div></header>
+<main class="wrap">
+  <h1>社会招聘</h1>
+  <div class="sub">共 8 个在招职位 · 更新于今天 09:20</div>
+  <div class="toolbar">
+    <span class="chip on">全部</span><span class="chip">技术</span><span class="chip">产品</span>
+    <span class="chip">设计</span><span class="chip">运营</span>
+  </div>
+  <ul id="job-list" data-testid="job-list">
+    <li><div><div class="t">高级前端工程师</div><div class="m">上海 · 5-8 年 · 30-50K</div></div><span class="go">投递 ›</span></li>
+    <li><div><div class="t">Android 系统工程师</div><div class="m">深圳 · 3-5 年 · 25-40K</div></div><span class="go">投递 ›</span></li>
+    <li><div><div class="t">后端开发工程师（Go）</div><div class="m">北京 · 3-5 年 · 28-45K</div></div><span class="go">投递 ›</span></li>
+    <li><div><div class="t">产品经理 · 增长方向</div><div class="m">杭州 · 5-10 年 · 35-55K</div></div><span class="go">投递 ›</span></li>
+    <li><div><div class="t">交互设计师</div><div class="m">远程 · 3-5 年 · 20-35K</div></div><span class="go">投递 ›</span></li>
+    <li><div><div class="t">测试开发工程师</div><div class="m">成都 · 2-4 年 · 18-30K</div></div><span class="go">投递 ›</span></li>
+    <li><div><div class="t">数据平台工程师</div><div class="m">上海 · 4-6 年 · 30-48K</div></div><span class="go">投递 ›</span></li>
+    <li><div><div class="t">海外市场运营</div><div class="m">深圳 · 2-4 年 · 15-25K</div></div><span class="go">投递 ›</span></li>
+  </ul>
+  <button class="mutate" id="mutate">（演示）模拟 HR 新增一个岗位</button>
+</main>
+<script>
+  // 模拟真实站点的服务端更新：变更写进 localStorage，刷新后仍然存在
+  const KEY = 'demo-jobs-added';
+  function renderAdded() {
+    const n = Number(localStorage.getItem(KEY) || 0);
+    const list = document.getElementById('job-list');
+    list.querySelectorAll('li[data-added]').forEach((el) => el.remove());
+    for (let i = n; i >= 1; i--) {
+      const li = document.createElement('li');
+      li.dataset.added = '1';
+      li.innerHTML = '<div><div class="t">新岗位 ' + i + ' · 大数据开发</div><div class="m">深圳 · 3-5 年 · 25-40K</div></div><span class="go">投递 ›</span>';
+      list.prepend(li);
+    }
+    document.querySelector('.sub').textContent = '共 ' + (8 + n) + ' 个在招职位 · 更新于今天 09:20';
+  }
+  renderAdded();
+  document.getElementById('mutate').addEventListener('click', () => {
+    localStorage.setItem(KEY, String(Number(localStorage.getItem(KEY) || 0) + 1));
+    renderAdded();
+  });
+</script>
+</body>
+</html>
