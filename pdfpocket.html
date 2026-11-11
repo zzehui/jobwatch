@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PDFPocket 隐私政策 · Privacy</title>
+<style>
+  :root { --bg:#0b0e14; --fg:#e8eef7; --dim:#8b9bb4; --amber:#e8a33d; --line:#223044; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font:16px/1.75 -apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; }
+  main { max-width:760px; margin:0 auto; padding:56px 22px 80px; }
+  h1 { font-size:26px; margin:0 0 6px; }
+  h2 { font-size:17px; margin:32px 0 8px; color:var(--amber); }
+  p, li { color:#c9d4e4; }
+  .dim { color:var(--dim); font-size:14px; }
+  a { color:#7fb6ff; }
+  hr { border:none; border-top:1px solid var(--line); margin:40px 0; }
+  code { background:#151d29; padding:1px 6px; border-radius:5px; font-size:14px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>PDFPocket 隐私政策</h1>
+  <p class="dim">最后更新：2026-11-11 · 开发者：douduo（个人开发者）</p>
+
+  <h2>一句话</h2>
+  <p>PDFPocket 不收集任何数据，不联网，不上传你的文件。所有 PDF 处理都在你的浏览器里完成。</p>
+
+  <h2>1. 我们收集什么</h2>
+  <p><strong>什么也不收集。</strong>没有账号、没有分析统计、没有崩溃上报、没有广告。</p>
+
+  <h2>2. 你的 PDF 去哪了</h2>
+  <p>你拖进来的文件只存在于当前标签页的内存里。合并、拆分、旋转、压缩都在本机用
+  <code>pdf-lib</code> 完成，结果通过浏览器自带的下载功能存到你自己的电脑上。
+  关闭标签页后内存里的文件即被释放。</p>
+
+  <h2>3. 本地存储了什么</h2>
+  <p>只有一个东西：如果你是 Pro 用户，扩展会在 <code>chrome.storage.local</code> 里存你输入的许可证字符串，
+  用来下次打开时免于重复激活。这个值不会离开你的电脑。</p>
+
+  <h2>4. 权限说明</h2>
+  <ul>
+    <li><code>storage</code>：仅用于保存上面的许可证。</li>
+  </ul>
+  <p>扩展不申请任何网站访问权限，不读取你浏览的网页内容。</p>
+
+  <h2>5. 第三方</h2>
+  <p>扩展不加载任何远程代码，不调用任何第三方接口。购买 Pro 时的支付与订单信息由支付服务商
+  （如 Lemon Squeezy / Paddle）按其隐私政策处理，我们不接触你的卡号。</p>
+
+  <h2>6. 儿童</h2>
+  <p>本扩展不面向 13 岁以下儿童，也不收集任何人的个人信息。</p>
+
+  <h2>7. 数据删除</h2>
+  <p>没有服务器端数据可删。要清除本地许可证，卸载扩展即可。</p>
+
+  <h2>8. 变更</h2>
+  <p>若未来版本引入任何联网功能，会先更新本页并在扩展内明确提示，不会静默改变行为。</p>
+
+  <h2>9. 联系方式</h2>
+  <p>邮箱：<a href="mailto:zzhlmgj@gmail.com">zzhlmgj@gmail.com</a></p>
+
+  <hr>
+
+  <h2 id="en">English</h2>
+  <p><strong>PDFPocket collects nothing.</strong> No account, no analytics, no ads, no network calls.
+  Your PDFs are processed entirely on your machine with <code>pdf-lib</code> and saved through the
+  browser's own download mechanism. The only thing stored locally is your Pro licence string
+  (in <code>chrome.storage.local</code>) so you don't have to re-activate. The extension requests
+  no host permissions and never reads the pages you browse. Payments for Pro are handled by a
+  third-party checkout provider; we never see your card details. Contact:
+  <a href="mailto:zzhlmgj@gmail.com">zzhlmgj@gmail.com</a>.</p>
+</main>
+</body>
+</html>
