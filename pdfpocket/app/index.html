@@ -49,12 +49,13 @@
     <button class="tab" data-mode="split">拆分</button>
     <button class="tab" data-mode="rotate">旋转</button>
     <button class="tab" data-mode="compress">压缩</button>
+    <button class="tab" data-mode="img">图片转 PDF</button>
   </div>
 
   <div class="drop" id="drop">
     <p style="margin:0 0 6px">把 PDF 拖进来，或点这里选择</p>
     <div class="hint">支持多选 · 不上传 · 断网也能用 · <a href="#" id="demoLink">用样例文件试试</a></div>
-    <input id="fileInput" type="file" accept="application/pdf,.pdf" multiple hidden>
+    <input id="fileInput" type="file" accept="application/pdf,.pdf,image/jpeg,image/png,.jpg,.jpeg,.png" multiple hidden>
   </div>
 
   <div class="files" id="files"></div>
@@ -77,6 +78,9 @@
       <input type="text" id="rotateRange" placeholder="1-3,5" style="width:130px">
       <select id="rotateDeg"><option value="90">顺时针 90°</option><option value="180">180°</option><option value="270">顺时针 270°</option></select>
     </div>
+  </div>
+  <div class="opt" id="opt-img">
+    <div class="row"><span class="hint">每张图一页 A4，等比缩放居中，留 24pt 边距。支持 JPG / PNG。</span></div>
   </div>
   <div class="opt" id="opt-compress">
     <div class="row">
@@ -127,6 +131,14 @@ paint();
 });
 
 async function add(list) {
+  const imgs = list.filter((f) => /^image\/(jpeg|png)$/i.test(f.type) || /\.(jpe?g|png)$/i.test(f.name));
+  if (imgs.length) {
+    for (const f of imgs) {
+      const bytes = new Uint8Array(await f.arrayBuffer());
+      state.files.push({ name: f.name, size: f.size, pages: 1, buf: bytes, kind: "image", type: f.type });
+    }
+    if (state.mode !== "img") { state.mode = "img"; document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("on", t.dataset.mode==="img")); document.querySelectorAll(".opt").forEach(o=>o.classList.toggle("on", o.id==="opt-img")); }
+  }
   for (const f of list.filter((f) => /\.pdf$/i.test(f.name))) {
     try {
       const buf = new Uint8Array(await f.arrayBuffer());
@@ -171,7 +183,7 @@ paint(); });
   const size = state.files.reduce((a, f) => a + f.size, 0);
   $("#summary").textContent = state.files.length ? `${state.files.length} 个文件 · ${pages} 页 · ${human(size)}` : "还没有文件";
   $("#runBtn").disabled = !state.files.length;
-  $("#runBtn").textContent = { merge: "合并并下载", split: "拆分并下载", rotate: "旋转并下载", compress: "压缩并下载" }[state.mode];
+  $("#runBtn").textContent = { merge: "合并并下载", split: "拆分并下载", rotate: "旋转并下载", compress: "压缩并下载", img: "转成 PDF" }[state.mode];
 }
 
 function download(bytes, name) {
@@ -189,19 +201,24 @@ function toast(msg) {
 $("#runBtn").addEventListener("click", async () => {
   const btn = $("#runBtn"); btn.disabled = true; const old = btn.textContent; btn.textContent = "处理中…";
   try {
-    if (state.mode === "merge") download(await merge(state.files.map((f) => f.buf)), "merged.pdf");
-    else if (state.mode === "split") {
+    if (state.mode === "merge") {
+      download(await merge(state.files.map((f) => f.buf)), "merged.pdf");
+    } else if (state.mode === "split") {
       const mode = document.querySelector('input[name="sm"]:checked').value;
       if (mode === "range") download(await extract(state.files[0].buf, $("#splitRange").value.trim()), "extracted.pdf");
       else {
         const parts = await splitEvery(state.files[0].buf, Math.max(1, +$("#splitN").value || 1));
-        // 在线版一次只给第一份（与免费版一致），其余提示用扩展版
         download(parts[0].bytes, parts[0].name);
         if (parts.length > 1) toast(`共 ${parts.length} 份，在线版只下载第一份；批量导出请用扩展版`);
       }
     } else if (state.mode === "rotate") {
       const scope = document.querySelector('input[name="rm"]:checked').value;
       download(await rotate(state.files[0].buf, scope === "range" ? $("#rotateRange").value.trim() : "", +$("#rotateDeg").value), "rotated.pdf");
+    } else if (state.mode === "img") {
+      const { imagesToPdf } = await import("./core.js");
+      const items = state.files.filter((f) => f.kind === "image").map((f) => ({ bytes: f.buf, type: f.type, name: f.name }));
+      if (!items.length) throw new Error("先加几张图片");
+      download(await imagesToPdf(items), "images.pdf");
     } else {
       const { compress } = await import("./compress.js");
       const before = state.files[0].buf.byteLength;
@@ -211,21 +228,10 @@ $("#runBtn").addEventListener("click", async () => {
     }
   } catch (e) {
     toast("处理失败：" + (e.message === "empty-range" ? "页码写错了" : e.message || e));
-  } finally { btn.disabled = !state.files.length; btn.textContent = old; document.querySelector("#demoLink").addEventListener("click", async (e) => {
-  e.preventDefault(); e.stopPropagation();
-  try {
-    const r = await fetch("./demo.pdf");
-    const buf = new Uint8Array(await r.arrayBuffer());
-    const meta = await info(buf);
-    state.files.push({ name: "样例.pdf", size: buf.length, pages: meta.pages, buf });
-    paint(); toast("已加入样例.pdf（3 页）");
-  } catch (err) { toast("样例加载失败：" + (err.message || err)); }
+  } finally { btn.disabled = !state.files.length; btn.textContent = old; paint(); }
 });
 
-paint(); }
-});
-
-document.querySelector("#demoLink").addEventListener("click", async (e) => {
+$("#demoLink").addEventListener("click", async (e) => {
   e.preventDefault(); e.stopPropagation();
   try {
     const r = await fetch("./demo.pdf");

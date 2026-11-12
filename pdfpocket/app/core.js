@@ -168,3 +168,22 @@ async function doc0Font(doc) {
   const { StandardFonts } = await import("./pdf-lib.esm.min.js");
   return doc.embedFont(StandardFonts.Helvetica);
 }
+
+// 图片 → PDF：每张图一页 A4，等比缩放居中，留 24pt 边距。支持 JPG / PNG。
+export async function imagesToPdf(items, opts = {}) {
+  const { PDFDocument } = await import("./pdf-lib.esm.min.js");
+  const out = await PDFDocument.create();
+  const A4 = [595.28, 841.89];
+  const margin = opts.margin == null ? 24 : opts.margin;
+  for (const it of items) {
+    const isPng = /png$/i.test(it.type || "") || /\.png$/i.test(it.name || "");
+    const img = isPng ? await out.embedPng(it.bytes) : await out.embedJpg(it.bytes);
+    const page = out.addPage(A4);
+    const maxW = A4[0] - margin * 2, maxH = A4[1] - margin * 2;
+    const scale = Math.min(maxW / img.width, maxH / img.height, 1) || 1;
+    const w = img.width * scale, h = img.height * scale;
+    page.drawImage(img, { x: (A4[0] - w) / 2, y: (A4[1] - h) / 2, width: w, height: h });
+  }
+  out.setProducer("PDFPocket");
+  return out.save({ useObjectStreams: true });
+}
