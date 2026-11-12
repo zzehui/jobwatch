@@ -53,7 +53,7 @@
 
   <div class="drop" id="drop">
     <p style="margin:0 0 6px">把 PDF 拖进来，或点这里选择</p>
-    <div class="hint">支持多选 · 不上传 · 断网也能用</div>
+    <div class="hint">支持多选 · 不上传 · 断网也能用 · <a href="#" id="demoLink">用样例文件试试</a></div>
     <input id="fileInput" type="file" accept="application/pdf,.pdf" multiple hidden>
   </div>
 
@@ -112,7 +112,18 @@ $("#tabs").addEventListener("click", (e) => {
   state.mode = b.dataset.mode;
   document.querySelectorAll(".tab").forEach((t) => t.classList.toggle("on", t === b));
   document.querySelectorAll(".opt").forEach((o) => o.classList.toggle("on", o.id === "opt-" + state.mode));
-  paint();
+  document.querySelector("#demoLink").addEventListener("click", async (e) => {
+  e.preventDefault(); e.stopPropagation();
+  try {
+    const r = await fetch("./demo.pdf");
+    const buf = new Uint8Array(await r.arrayBuffer());
+    const meta = await info(buf);
+    state.files.push({ name: "样例.pdf", size: buf.length, pages: meta.pages, buf });
+    paint(); toast("已加入样例.pdf（3 页）");
+  } catch (err) { toast("样例加载失败：" + (err.message || err)); }
+});
+
+paint();
 });
 
 async function add(list) {
@@ -123,7 +134,18 @@ async function add(list) {
       state.files.push({ name: f.name, size: f.size, pages: meta.pages, buf });
     } catch (err) { toast("读不了这个文件：" + (err.message || err)); }
   }
-  paint();
+  document.querySelector("#demoLink").addEventListener("click", async (e) => {
+  e.preventDefault(); e.stopPropagation();
+  try {
+    const r = await fetch("./demo.pdf");
+    const buf = new Uint8Array(await r.arrayBuffer());
+    const meta = await info(buf);
+    state.files.push({ name: "样例.pdf", size: buf.length, pages: meta.pages, buf });
+    paint(); toast("已加入样例.pdf（3 页）");
+  } catch (err) { toast("样例加载失败：" + (err.message || err)); }
+});
+
+paint();
 }
 
 function human(b) { return b > 1048576 ? (b/1048576).toFixed(1)+" MB" : b > 1024 ? Math.round(b/1024)+" KB" : b+" B"; }
@@ -133,7 +155,18 @@ function paint() {
     `<div class="file"><span>${i+1}</span><span class="n">${f.name}</span>
      <span class="meta">${f.pages} 页 · ${human(f.size)}</span>
      <button class="btn ghost" data-x="${i}" style="padding:4px 9px">×</button></div>`).join("");
-  document.querySelectorAll("[data-x]").forEach((b) => b.onclick = () => { state.files.splice(+b.dataset.x, 1); paint(); });
+  document.querySelectorAll("[data-x]").forEach((b) => b.onclick = () => { state.files.splice(+b.dataset.x, 1); document.querySelector("#demoLink").addEventListener("click", async (e) => {
+  e.preventDefault(); e.stopPropagation();
+  try {
+    const r = await fetch("./demo.pdf");
+    const buf = new Uint8Array(await r.arrayBuffer());
+    const meta = await info(buf);
+    state.files.push({ name: "样例.pdf", size: buf.length, pages: meta.pages, buf });
+    paint(); toast("已加入样例.pdf（3 页）");
+  } catch (err) { toast("样例加载失败：" + (err.message || err)); }
+});
+
+paint(); });
   const pages = state.files.reduce((a, f) => a + f.pages, 0);
   const size = state.files.reduce((a, f) => a + f.size, 0);
   $("#summary").textContent = state.files.length ? `${state.files.length} 个文件 · ${pages} 页 · ${human(size)}` : "还没有文件";
@@ -178,7 +211,29 @@ $("#runBtn").addEventListener("click", async () => {
     }
   } catch (e) {
     toast("处理失败：" + (e.message === "empty-range" ? "页码写错了" : e.message || e));
-  } finally { btn.disabled = !state.files.length; btn.textContent = old; paint(); }
+  } finally { btn.disabled = !state.files.length; btn.textContent = old; document.querySelector("#demoLink").addEventListener("click", async (e) => {
+  e.preventDefault(); e.stopPropagation();
+  try {
+    const r = await fetch("./demo.pdf");
+    const buf = new Uint8Array(await r.arrayBuffer());
+    const meta = await info(buf);
+    state.files.push({ name: "样例.pdf", size: buf.length, pages: meta.pages, buf });
+    paint(); toast("已加入样例.pdf（3 页）");
+  } catch (err) { toast("样例加载失败：" + (err.message || err)); }
+});
+
+paint(); }
+});
+
+document.querySelector("#demoLink").addEventListener("click", async (e) => {
+  e.preventDefault(); e.stopPropagation();
+  try {
+    const r = await fetch("./demo.pdf");
+    const buf = new Uint8Array(await r.arrayBuffer());
+    const meta = await info(buf);
+    state.files.push({ name: "样例.pdf", size: buf.length, pages: meta.pages, buf });
+    paint(); toast("已加入样例.pdf（3 页）");
+  } catch (err) { toast("样例加载失败：" + (err.message || err)); }
 });
 
 paint();
