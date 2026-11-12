@@ -1,0 +1,92 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PDF Pocket — merge, split, rotate, compress PDFs locally</title>
+<style>
+  :root{--bg:#0b0e13;--card:#141a22;--line:#232d3a;--txt:#e8eef7;--dim:#93a1b3;--amber:#e8a33d;--amber-d:#2a1c07}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.7 -apple-system,"PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+  .wrap{max-width:880px;margin:0 auto;padding:56px 22px 80px}
+  .logo{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+  .logo i{width:44px;height:44px;border-radius:11px;background:var(--amber);display:grid;place-items:center;font-style:normal;font-weight:800;color:#231703;font-size:20px}
+  h1{font-size:34px;line-height:1.3;margin:0 0 10px}
+  h2{font-size:20px;margin:44px 0 12px}
+  p{margin:8px 0}
+  .sub{color:var(--dim);font-size:17px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin:18px 0}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:680px){.grid{grid-template-columns:1fr}h1{font-size:26px}}
+  .btn{display:inline-block;background:var(--amber);color:var(--amber-d);font-weight:700;text-decoration:none;padding:14px 26px;border-radius:12px}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  table{width:100%;border-collapse:collapse;font-size:15px}
+  td,th{border-bottom:1px solid var(--line);padding:10px 6px;text-align:left}
+  th{color:var(--dim);font-weight:500}
+  .tag{display:inline-block;font-size:12px;padding:2px 8px;border-radius:999px;background:#1d2733;color:var(--dim);margin-left:8px}
+  code{background:#0e141b;border:1px solid var(--line);border-radius:6px;padding:2px 6px;font-size:13px}
+  .warn{background:#221a0d;border:1px solid #5a4527;color:#f2c684}
+  footer{color:var(--dim);font-size:13px;margin-top:52px}
+</style></head>
+<body>
+<div class="wrap">
+  <div class="logo"><i>PDF</i><strong>PDF Pocket</strong></div>
+
+  <div class="hero-cta"><a class="btn ghost" href="../app/">No install — use it right in your browser →</a></div>
+  <h1>Merge, split, rotate, compress.<br>Your files never leave your computer.</h1>
+  <p class="sub">A browser extension. No upload, no account, no limits with Pro.</p>
+
+  <p style="margin:26px 0">
+    <a class="btn" href="https://microsoftedge.microsoft.com/addons/detail/jnemfifaohidaggafoebhdkhjhbnjcpl">Get it for Edge (free)</a>
+    <a class="btn ghost" href="#buy" style="margin-left:10px">See Pro</a>
+    <a class="btn ghost" href="../index.html" style="margin-left:10px">中文</a>
+  </p>
+
+  <h2>Why not a web service?</h2>
+  <div class="card">
+    <p>Because online PDF tools upload your contracts, invoices and resumes <b>to someone else's server</b>. We do the opposite: everything is processed inside your browser, and it keeps working with the network unplugged.</p>
+    <p class="sub">Install it, pull your network cable, and try — every feature still works.</p>
+  </div>
+
+  <h2>What the free version does</h2>
+  <table>
+    <tr><th>Feature</th><th>Free</th><th>Pro</th></tr>
+    <tr><td>Merge</td><td>up to 3 files / 50 pages</td><td>unlimited</td></tr>
+    <tr><td>Split / extract</td><td>first part only</td><td>all parts</td></tr>
+    <tr><td>Rotate</td><td>✅</td><td>✅</td></tr>
+    <tr><td>Images to PDF</td><td>up to 5 images</td><td>unlimited</td></tr>
+    <tr><td>Compress</td><td>✅ (3 levels)</td><td>✅</td></tr>
+    <tr><td>Text watermark</td><td>—</td><td>✅ (Chinese/English)</td></tr>
+    <tr><td>Invoice sheet (2 per A4 page)</td><td>—</td><td>✅ (cut lines, numbering)</td></tr>
+    <tr><td>Custom output file name</td><td>—</td><td>✅</td></tr>
+  </table>
+
+  <h2 id="buy">Pro: 39 CNY, one-time</h2>
+  <div class="card">
+    <p style="font-size:22px;margin:0 0 6px"><b>39 CNY</b> <span class="tag">not a subscription</span></p>
+    <p class="sub">Buy this major version once, keep it forever. Future major upgrades are half price for existing users. No auto-renewal, no account.</p>
+    <p style="margin-top:18px">
+      <a class="btn" id="buyBtn" href="#buy">Buy (coming soon)</a>
+    </p>
+    <p class="sub" id="buyNote">Payment runs through a third-party store; you get a licence key right after paying and paste it into the extension. Re-paste it on a new computer.</p>
+  </div>
+
+  <h2>How to activate</h2>
+  <div class="card">
+    <p>1. Click the extension icon → <code>Pro</code> in the top right → paste your key → <b>Activate</b>.</p>
+    <p>2. The badge turns <code>Pro</code> and all limits disappear immediately.</p>
+    <p class="sub">The key is verified offline — no network call, no email upload. Lost it? We can reissue from your purchase record.</p>
+  </div>
+
+  <h2>FAQ</h2>
+  <div class="card">
+    <p><b>Does it work in Chrome?</b> Yes, same package. Chrome Web Store review is pending; you can load it unpacked for now.</p>
+    <p><b>Does it upload my files secretly?</b> No. The extension requests a single permission, <code>storage</code>, and declares no network hosts.</p>
+    <p><b>Encrypted PDFs?</b> Not supported — decrypt first.</p>
+    <p><b>Can it compress scans?</b> Yes: compression re-encodes the embedded images. Text-only PDFs barely shrink (they are already small).</p>
+    <p><b>Can I get an invoice?</b> Yes, a Chinese invoice (个体户) is available on request.</p>
+  </div>
+
+  <div class="card warn">
+    <p><b>Status (12 Nov 2026)</b>: the free version is live on Edge; the Pro payment channel is being set up, so Pro is not on sale yet. Existing installs are unaffected.</p>
+  </div>
+
+  <footer>douduo (individual developer) · <a href="../pdfpocket.html" style="color:#93a1b3">Privacy policy</a></footer>
+</div>
+</body></html>

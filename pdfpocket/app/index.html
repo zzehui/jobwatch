@@ -40,28 +40,29 @@
 <body>
 <header>
   <div class="logo">PDF</div>
-  <div><h1>PDF 口袋 · 在线版</h1><div class="sub">所有处理在本机完成，文件不会离开你的电脑。</div></div>
+  <div style="flex:1"><h1 data-t="title">PDF 口袋 · 在线版</h1><div class="sub" data-t="sub">所有处理在本机完成，文件不会离开你的电脑。</div></div>
+  <button class="btn ghost" id="langBtn" style="padding:6px 12px;font-size:13px">EN</button>
 </header>
 
 <main>
   <div class="tabs" id="tabs">
-    <button class="tab on" data-mode="merge">合并</button>
-    <button class="tab" data-mode="split">拆分</button>
-    <button class="tab" data-mode="rotate">旋转</button>
-    <button class="tab" data-mode="compress">压缩</button>
-    <button class="tab" data-mode="img">图片转 PDF</button>
+    <button class="tab on" data-mode="merge" data-t="merge">合并</button>
+    <button class="tab" data-mode="split" data-t="split">拆分</button>
+    <button class="tab" data-mode="rotate" data-t="rotate">旋转</button>
+    <button class="tab" data-mode="compress" data-t="compress">压缩</button>
+    <button class="tab" data-mode="img" data-t="img">图片转 PDF</button>
   </div>
 
   <div class="drop" id="drop">
-    <p style="margin:0 0 6px">把 PDF 或图片拖进来，或点这里选择</p>
-    <div class="hint">支持多选 · 不上传 · 断网也能用 · <a href="#" id="demoLink">用样例文件试试</a></div>
+    <p style="margin:0 0 6px" data-t="drop">把 PDF 或图片拖进来，或点这里选择</p>
+    <div class="hint"><span data-t="dropSub">支持多选 · 不上传 · 断网也能用 · </span><a href="#" id="demoLink" data-t="demo">用样例文件试试</a></div>
     <input id="fileInput" type="file" accept="application/pdf,.pdf,image/jpeg,image/png,.jpg,.jpeg,.png" multiple hidden>
   </div>
 
   <div class="files" id="files"></div>
 
   <div class="opt on" id="opt-merge">
-    <div class="row"><span class="hint">按列表顺序合并；拖拽排序请在扩展版里用 ↑↓</span></div>
+    <div class="row"><span class="hint" data-t="mergeHint">按列表顺序合并；拖拽排序请在扩展版里用 ↑↓</span></div>
   </div>
   <div class="opt" id="opt-split">
     <div class="row">
@@ -80,21 +81,21 @@
     </div>
   </div>
   <div class="opt" id="opt-img">
-    <div class="row"><span class="hint">每张图一页 A4，等比缩放居中，留 24pt 边距。支持 JPG / PNG。</span></div>
+    <div class="row"><span class="hint" data-t="imgHint">每张图一页 A4，等比缩放居中，留 24pt 边距。支持 JPG / PNG。</span></div>
   </div>
   <div class="opt" id="opt-compress">
     <div class="row">
-      <span class="hint">重压缩内嵌图片，文字与矢量保持清晰</span>
+      <span class="hint" data-t="compHint">重压缩内嵌图片，文字与矢量保持清晰</span>
       <select id="level"><option value="light">轻（2200px）</option><option value="normal" selected>标准（1600px）</option><option value="strong">强（1100px）</option></select>
     </div>
   </div>
 
-  <footer class="tip">想要批量拆分、加水印、发票拼版？<a href="../">装浏览器扩展版（Pro）</a></footer>
+  <footer class="tip"><span data-t="tipA">想要批量拆分、加水印、发票拼版？</span><a href="../" data-t="tipB">装浏览器扩展版（Pro）</a></footer>
 </main>
 
 <div class="bar">
-  <span class="hint" id="summary">还没有文件</span>
-  <button class="btn" id="runBtn" disabled>开始处理</button>
+  <span class="hint" id="summary" data-t="noFiles">还没有文件</span>
+  <button class="btn" id="runBtn" disabled data-t="run">开始处理</button>
 </div>
 <div id="toast" hidden></div>
 
@@ -102,6 +103,36 @@
 import { merge, extract, splitEvery, rotate, info } from "./core.js";
 
 const $ = (s) => document.querySelector(s);
+
+const DICT = {
+  zh: {title:"PDF 口袋 · 在线版", sub:"所有处理在本机完成，文件不会离开你的电脑。", merge:"合并", split:"拆分",
+        rotate:"旋转", compress:"压缩", img:"图片转 PDF", drop:"把 PDF 或图片拖进来，或点这里选择",
+        dropSub:"支持多选 · 不上传 · 断网也能用 · ", demo:"用样例文件试试", noFiles:"还没有文件", run:"开始处理",
+        tipA:"想要批量拆分、加水印、发票拼版？ ", tipB:"装浏览器扩展版（Pro）", working:"处理中…",
+        merged:"合并并下载", splitBtn:"拆分并下载", rotBtn:"旋转并下载", compBtn:"压缩并下载", imgBtn:"转成 PDF",
+        added:"已加入样例.pdf（3 页）", fail:"处理失败：", noImg:"先加几张图片", demoFail:"样例加载失败：",
+        splitOne:"份，在线版只下载第一份；批量导出请用扩展版", badRange:"页码写错了", unit:" 个文件 · ",
+        mergeHint:"按列表顺序合并；拖拽排序请在扩展版里用 ↑↓", splitHint:"每 N 页切一份，或只取指定页（1-3,5）", imgHint:"每张图一页 A4，等比缩放居中，最多 5 张", compHint:"重压缩内嵌图片，文字与矢量保持清晰"},
+  en: {title:"PDF Pocket · Web", sub:"Everything runs on your machine. Your files never leave your computer.", merge:"Merge",
+        split:"Split", rotate:"Rotate", compress:"Compress", img:"Images to PDF", drop:"Drop PDFs or images here, or click to choose",
+        dropSub:"Multiple files · no upload · works offline · ", demo:"try a sample file", noFiles:"No files yet", run:"Run",
+        tipA:"Need batch split, watermark, invoice sheets? ", tipB:"get the extension (Pro)", working:"Working…",
+        merged:"Merge & download", splitBtn:"Split & download", rotBtn:"Rotate & download", compBtn:"Compress & download", imgBtn:"Convert to PDF",
+        added:"sample.pdf added (3 pages)", fail:"Failed: ", noImg:"add some images first", demoFail:"Sample failed: ",
+        splitOne:" parts — web version downloads the first only; batch export is in the extension", badRange:"bad page range", unit:" files · ",
+        mergeHint:"Files merge in list order. Reordering with ↑↓ is in the extension.", splitHint:"Split every N pages, or take specific pages (1-3,5)", imgHint:"One A4 page per image, scaled to fit. Max 5 images.", compHint:"Re-compresses embedded images; text and vectors stay crisp."}
+};
+let LANG = (navigator.language || "zh").toLowerCase().startsWith("zh") ? "zh" : "en";
+const T = (k) => (DICT[LANG][k] != null ? DICT[LANG][k] : DICT.zh[k] || k);
+function applyLang() {
+  document.documentElement.lang = LANG === "zh" ? "zh-CN" : "en";
+  document.title = T("title");
+  document.querySelectorAll("[data-t]").forEach((el) => { el.textContent = T(el.dataset.t); });
+  document.querySelector("#langBtn").textContent = LANG === "zh" ? "EN" : "中文";
+  paint();
+}
+document.querySelector("#langBtn").addEventListener("click", () => { LANG = LANG === "zh" ? "en" : "zh"; applyLang(); });
+
 const state = { mode: "merge", files: [] };
 
 const drop = $("#drop"), input = $("#fileInput");
@@ -123,8 +154,8 @@ $("#tabs").addEventListener("click", (e) => {
     const buf = new Uint8Array(await r.arrayBuffer());
     const meta = await info(buf);
     state.files.push({ name: "样例.pdf", size: buf.length, pages: meta.pages, buf });
-    paint(); toast("已加入样例.pdf（3 页）");
-  } catch (err) { toast("样例加载失败：" + (err.message || err)); }
+    paint(); toast(T("added"));
+  } catch (err) { toast(T("demoFail") + (err.message || err)); }
 });
 
 paint();
@@ -153,8 +184,8 @@ async function add(list) {
     const buf = new Uint8Array(await r.arrayBuffer());
     const meta = await info(buf);
     state.files.push({ name: "样例.pdf", size: buf.length, pages: meta.pages, buf });
-    paint(); toast("已加入样例.pdf（3 页）");
-  } catch (err) { toast("样例加载失败：" + (err.message || err)); }
+    paint(); toast(T("added"));
+  } catch (err) { toast(T("demoFail") + (err.message || err)); }
 });
 
 paint();
@@ -174,16 +205,16 @@ function paint() {
     const buf = new Uint8Array(await r.arrayBuffer());
     const meta = await info(buf);
     state.files.push({ name: "样例.pdf", size: buf.length, pages: meta.pages, buf });
-    paint(); toast("已加入样例.pdf（3 页）");
-  } catch (err) { toast("样例加载失败：" + (err.message || err)); }
+    paint(); toast(T("added"));
+  } catch (err) { toast(T("demoFail") + (err.message || err)); }
 });
 
 paint(); });
   const pages = state.files.reduce((a, f) => a + f.pages, 0);
   const size = state.files.reduce((a, f) => a + f.size, 0);
-  $("#summary").textContent = state.files.length ? `${state.files.length} 个文件 · ${pages} 页 · ${human(size)}` : "还没有文件";
+  $("#summary").textContent = state.files.length ? `${state.files.length}${T("unit")}${pages}${LANG === "zh" ? " 页 · " : " pages · "}${human(size)}` : T("noFiles");
   $("#runBtn").disabled = !state.files.length;
-  $("#runBtn").textContent = { merge: "合并并下载", split: "拆分并下载", rotate: "旋转并下载", compress: "压缩并下载", img: "转成 PDF" }[state.mode];
+  $("#runBtn").textContent = { merge: T("merged"), split: T("splitBtn"), rotate: T("rotBtn"), compress: T("compBtn"), img: T("imgBtn") }[state.mode];
 }
 
 function download(bytes, name) {
@@ -199,7 +230,7 @@ function toast(msg) {
 }
 
 $("#runBtn").addEventListener("click", async () => {
-  const btn = $("#runBtn"); btn.disabled = true; const old = btn.textContent; btn.textContent = "处理中…";
+  const btn = $("#runBtn"); btn.disabled = true; const old = btn.textContent; btn.textContent = T("working");
   try {
     if (state.mode === "merge") {
       download(await merge(state.files.map((f) => f.buf)), "merged.pdf");
@@ -209,7 +240,7 @@ $("#runBtn").addEventListener("click", async () => {
       else {
         const parts = await splitEvery(state.files[0].buf, Math.max(1, +$("#splitN").value || 1));
         download(parts[0].bytes, parts[0].name);
-        if (parts.length > 1) toast(`共 ${parts.length} 份，在线版只下载第一份；批量导出请用扩展版`);
+        if (parts.length > 1) toast(`${parts.length}${T("splitOne")}`);
       }
     } else if (state.mode === "rotate") {
       const scope = document.querySelector('input[name="rm"]:checked').value;
@@ -217,7 +248,7 @@ $("#runBtn").addEventListener("click", async () => {
     } else if (state.mode === "img") {
       const { imagesToPdf } = await import("./core.js");
       const items = state.files.filter((f) => f.kind === "image").map((f) => ({ bytes: f.buf, type: f.type, name: f.name }));
-      if (!items.length) throw new Error("先加几张图片");
+      if (!items.length) throw new Error(T("noImg"));
       download(await imagesToPdf(items), "images.pdf");
     } else {
       const { compress } = await import("./compress.js");
@@ -227,7 +258,7 @@ $("#runBtn").addEventListener("click", async () => {
       toast(`${human(before)} → ${human(bytes.length)}`);
     }
   } catch (e) {
-    toast("处理失败：" + (e.message === "empty-range" ? "页码写错了" : e.message || e));
+    toast(T("fail") + (e.message === "empty-range" ? T("badRange") : e.message || e));
   } finally { btn.disabled = !state.files.length; btn.textContent = old; paint(); }
 });
 
@@ -238,11 +269,11 @@ $("#demoLink").addEventListener("click", async (e) => {
     const buf = new Uint8Array(await r.arrayBuffer());
     const meta = await info(buf);
     state.files.push({ name: "样例.pdf", size: buf.length, pages: meta.pages, buf });
-    paint(); toast("已加入样例.pdf（3 页）");
-  } catch (err) { toast("样例加载失败：" + (err.message || err)); }
+    paint(); toast(T("added"));
+  } catch (err) { toast(T("demoFail") + (err.message || err)); }
 });
 
-paint();
+applyLang();
 </script>
 </body>
 </html>
