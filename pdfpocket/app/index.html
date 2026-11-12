@@ -212,7 +212,11 @@ function paint() {
 paint(); });
   const pages = state.files.reduce((a, f) => a + f.pages, 0);
   const size = state.files.reduce((a, f) => a + f.size, 0);
-  $("#summary").textContent = state.files.length ? `${state.files.length}${T("unit")}${pages}${LANG === "zh" ? " 页 · " : " pages · "}${human(size)}` : T("noFiles");
+  $("#summary").textContent = state.files.length
+    ? (LANG === "zh"
+        ? `${state.files.length} 个文件 · ${pages} 页 · ${human(size)}`
+        : `${state.files.length} file${state.files.length > 1 ? "s" : ""} · ${pages} page${pages > 1 ? "s" : ""} · ${human(size)}`)
+    : T("noFiles");
   $("#runBtn").disabled = !state.files.length;
   $("#runBtn").textContent = { merge: T("merged"), split: T("splitBtn"), rotate: T("rotBtn"), compress: T("compBtn"), img: T("imgBtn") }[state.mode];
 }
