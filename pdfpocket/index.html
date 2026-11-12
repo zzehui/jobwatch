@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PDF 口袋 · 合并拆分旋转压缩，全在本机完成</title>
+<style>
+  :root{--bg:#0b0e13;--card:#141a22;--line:#232d3a;--txt:#e8eef7;--dim:#93a1b3;--amber:#e8a33d;--amber-d:#2a1c07}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.7 -apple-system,"PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+  .wrap{max-width:880px;margin:0 auto;padding:56px 22px 80px}
+  .logo{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+  .logo i{width:44px;height:44px;border-radius:11px;background:var(--amber);display:grid;place-items:center;font-style:normal;font-weight:800;color:#231703;font-size:20px}
+  h1{font-size:34px;line-height:1.3;margin:0 0 10px}
+  h2{font-size:20px;margin:44px 0 12px}
+  p{margin:8px 0}
+  .sub{color:var(--dim);font-size:17px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin:18px 0}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:680px){.grid{grid-template-columns:1fr}h1{font-size:26px}}
+  .btn{display:inline-block;background:var(--amber);color:var(--amber-d);font-weight:700;text-decoration:none;padding:14px 26px;border-radius:12px}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  table{width:100%;border-collapse:collapse;font-size:15px}
+  td,th{border-bottom:1px solid var(--line);padding:10px 6px;text-align:left}
+  th{color:var(--dim);font-weight:500}
+  .tag{display:inline-block;font-size:12px;padding:2px 8px;border-radius:999px;background:#1d2733;color:var(--dim);margin-left:8px}
+  code{background:#0e141b;border:1px solid var(--line);border-radius:6px;padding:2px 6px;font-size:13px}
+  .warn{background:#221a0d;border:1px solid #5a4527;color:#f2c684}
+  footer{color:var(--dim);font-size:13px;margin-top:52px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="logo"><i>PDF</i><strong>PDF 口袋</strong></div>
+
+  <h1>合并、拆分、旋转、压缩。<br>文件不出你的电脑。</h1>
+  <p class="sub">浏览器扩展，装完即用。不上传、不注册、不限次数（Pro）。</p>
+
+  <p style="margin:26px 0">
+    <a class="btn" href="https://microsoftedge.microsoft.com/addons/detail/jnemfifaohidaggafoebhdkhjhbnjcpl">安装到 Edge（免费）</a>
+    <a class="btn ghost" href="#buy" style="margin-left:10px">看 Pro 版</a>
+  </p>
+
+  <h2>为什么不做成在线网站</h2>
+  <div class="card">
+    <p>因为在线 PDF 工具要把你的合同、发票、简历<b>上传到别人的服务器</b>。我们的做法相反：所有处理在浏览器里完成，断网也能用。</p>
+    <p class="sub">你可以装完后拔掉网线试一下，功能全在。</p>
+  </div>
+
+  <h2>免费版能做什么</h2>
+  <table>
+    <tr><th>功能</th><th>免费版</th><th>Pro</th></tr>
+    <tr><td>合并</td><td>最多 3 个文件 / 50 页</td><td>不限</td></tr>
+    <tr><td>拆分 / 抽取</td><td>只导出第一份</td><td>全部批次</td></tr>
+    <tr><td>旋转</td><td>✅</td><td>✅</td></tr>
+    <tr><td>压缩</td><td>✅（三档）</td><td>✅</td></tr>
+    <tr><td>加文字水印</td><td>—</td><td>✅（中文/英文，可调位置）</td></tr>
+    <tr><td>发票拼版（A4 每页 2 张）</td><td>—</td><td>✅（带裁切线、自动编号）</td></tr>
+    <tr><td>自定义输出文件名</td><td>—</td><td>✅</td></tr>
+  </table>
+
+  <h2 id="buy">Pro：39 元，一次买断</h2>
+  <div class="card">
+    <p style="font-size:22px;margin:0 0 6px"><b>39 元</b> <span class="tag">不是订阅</span></p>
+    <p class="sub">买断当前大版本，永久可用；以后的大版本升级另付（老用户半价）。不自动续费，不需要账号。</p>
+    <p style="margin-top:18px">
+      <a class="btn" id="buyBtn" href="#buy">购买（即将开放）</a>
+    </p>
+    <p class="sub" id="buyNote">付款走第三方平台，付款后立刻拿到一串授权码，粘进扩展即激活。换电脑重新粘一次即可。</p>
+  </div>
+
+  <h2>怎么激活</h2>
+  <div class="card">
+    <p>1. 点扩展图标 → 右上角 <code>Pro</code> → 把授权码粘进输入框 → 点「激活」。</p>
+    <p>2. 激活后左上角会显示 <code>Pro</code>，限制立刻解除。</p>
+    <p class="sub">授权码离线校验，不联网、不上传邮箱。丢了可以凭购买记录补发。</p>
+  </div>
+
+  <h2>常见问题</h2>
+  <div class="card">
+    <p><b>支持 Chrome 吗？</b> 支持，同一个包，Chrome 商店审核中；现在可以手动加载。</p>
+    <p><b>会不会偷偷上传文件？</b> 不会。扩展只申请了 <code>storage</code> 一个权限，没有网络请求域名。</p>
+    <p><b>加密的 PDF 能处理吗？</b> 不能，需要先解密。</p>
+    <p><b>扫描件能压缩吗？</b> 能，压缩就是重编码里面的图片；纯文字 PDF 压不动（本来就不大）。</p>
+    <p><b>公司能报销吗？</b> 可以开票（个体工商户），购买时备注抬头即可。</p>
+  </div>
+
+  <div class="card warn">
+    <p><b>当前状态（2026-11-12）</b>：免费版已上架 Edge；Pro 的收款通道正在接入，暂未开售。已装用户不受影响。</p>
+  </div>
+
+  <footer>豆多科技（douduo）· 个人开发者 · <a href="https://zzehui.github.io/jobwatch/pdfpocket.html" style="color:#93a1b3">隐私政策</a></footer>
+</div>
+</body>
+</html>
