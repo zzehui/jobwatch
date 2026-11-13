@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PDF 口袋 · 使用手册</title>
+<style>
+:root{--bg:#0b0f14;--panel:#131a23;--line:#212c3a;--tx:#e8eef6;--dim:#93a1b3;--amber:#e8a33d;--amber-d:#2a1c07}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.75 -apple-system,"PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+h1{font-size:28px;margin:0 0 6px} h2{font-size:20px;margin:36px 0 12px;padding-top:18px;border-top:1px solid var(--line)}
+h3{font-size:16px;margin:22px 0 8px} p,li{color:#cfd8e3} code{background:#1b2430;padding:1px 5px;border-radius:5px;font-size:13px}
+img{max-width:100%;border-radius:10px;border:1px solid var(--line);margin:12px 0}
+table{border-collapse:collapse;width:100%;margin:14px 0;font-size:14px} th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+th{background:#161f2a} blockquote{margin:14px 0;padding:10px 14px;border-left:3px solid var(--amber);background:#141b24;border-radius:0 8px 8px 0;color:var(--dim)}
+a{color:var(--amber)} .back{display:inline-block;margin-bottom:18px;color:var(--dim);text-decoration:none;font-size:14px}
+</style></head><body><div class="wrap">
+<a class="back" href="../">← 回到 PDF 口袋</a>
+<h1>PDF 口袋 · 功能点与使用手册</h1>
+<p>版本 1.0.0 ｜ 2026-11-13</p>
+<hr />
+<h2>一句话</h2>
+<p><strong>在浏览器里把 PDF 合并、拆分、旋转、压缩——文件不上传，全部在你电脑上算完。</strong></p>
+<p>适合：经常要交材料、改简历、拼发票、发给别人又嫌太大的人。</p>
+<hr />
+<h2>30 秒上手</h2>
+<p><strong>安装（二选一）</strong></p>
+<ol>
+<li><strong>商店版</strong>：Edge 加载项商店搜「PDF 口袋」，点安装。</li>
+<li><strong>本地版</strong>：解压 <code>pdfpocket-1.0.0-local.zip</code> → 打开 <code>edge://extensions</code>（或 <code>chrome://extensions</code>）→ 打开右上角「开发人员模式」→「加载解压缩的扩展」→ 选解压出来的文件夹。</li>
+</ol>
+<p><strong>用法</strong></p>
+<p>点工具栏里的橙色图标 → 打开工作台 → 把 PDF 拖进灰色虚线框（或点「选择 PDF」）→ 选一个标签页 → 点右下角按钮 → 文件自动下载。</p>
+<blockquote>
+<p>第一次安装会弹一个引导页，四步图，看完就关掉，不会再出现。</p>
+</blockquote>
+<hr />
+<h2>界面地图</h2>
+<table>
+<thead>
+<tr>
+<th>位置</th>
+<th>是什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>左上角 Logo</td>
+<td>PDF 口袋</td>
+</tr>
+<tr>
+<td>右上角「免费版」</td>
+<td>当前套餐，点不开（没有登录、没有账号）</td>
+</tr>
+<tr>
+<td>四个标签页</td>
+<td>合并 / 拆分 / 旋转 / 压缩</td>
+</tr>
+<tr>
+<td>灰色虚线框</td>
+<td>拖文件进来，或点「选择 PDF」</td>
+</tr>
+<tr>
+<td>文件列表</td>
+<td>每个文件显示页数与体积，右侧 ↑ ↓ 调顺序、× 移除</td>
+</tr>
+<tr>
+<td>底部左侧</td>
+<td>当前合计：几个文件、共几页、多大</td>
+</tr>
+<tr>
+<td>底部右侧橙色按钮</td>
+<td>执行（按钮文字跟着标签页变）</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="合并标签页" src="screens/01-merge.png" /></p>
+<hr />
+<h2>功能一：合并</h2>
+<p><strong>用途</strong>：把多个 PDF 拼成一个（简历+作品集、多张发票、扫描件拼接）。</p>
+<p><strong>步骤</strong></p>
+<ol>
+<li>切到「合并」，拖入两个以上 PDF。</li>
+<li>用 ↑ ↓ 调顺序——<strong>列表里的顺序就是最终页序</strong>。</li>
+<li>点「合并并下载」，得到 <code>merged.pdf</code>。</li>
+</ol>
+<p><strong>细节</strong></p>
+<ul>
+<li>页数、尺寸、横竖版各自保留，不会缩放。</li>
+<li>加密的 PDF（打开要密码）会被拒，页面上会提示「这个文件有密码」。</li>
+<li>只拖一个文件也能点，结果就是它自己（方便你先转格式）。</li>
+</ul>
+<hr />
+<h2>功能二：拆分</h2>
+<p><img alt="拆分标签页" src="screens/02-split.png" /></p>
+<p><strong>用途</strong>：把一份大 PDF 拆成若干份（按章节、按页数、把某几页单独拿出来）。</p>
+<p><strong>两种模式（单选）</strong></p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>怎么用</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>每 N 页切一份</td>
+<td>填数字，比如 2</td>
+<td>每 2 页一个文件：<code>part-01.pdf</code>、<code>part-02.pdf</code>…</td>
+</tr>
+<tr>
+<td>只取这些页</td>
+<td>填页码，比如 <code>1-3,5</code></td>
+<td>一个 <code>extracted.pdf</code>，只含这 4 页</td>
+</tr>
+</tbody>
+</table>
+<p><strong>页码写法</strong></p>
+<ul>
+<li><code>1-3,5</code> → 第 1、2、3、5 页</li>
+<li><code>2,4,6-8</code> → 支持逗号混写</li>
+<li>超出总页数的部分会被忽略；写错（如 <code>3-1</code>）会提示格式不对</li>
+</ul>
+<p><strong>细节</strong></p>
+<ul>
+<li>拆分出来的文件<strong>顺序与页码升序一致</strong>，不受输入顺序影响。</li>
+<li>免费版只导出第一份，其余需要 Pro（见下）。</li>
+</ul>
+<hr />
+<h2>功能三：旋转</h2>
+<p><img alt="旋转标签页" src="screens/03-rotate.png" /></p>
+<p><strong>用途</strong>：扫描件方向歪了、手机拍的横过来了。</p>
+<p><strong>步骤</strong></p>
+<ol>
+<li>切到「旋转」。</li>
+<li>选范围：<strong>整份</strong> 或 <strong>只旋转这些页</strong>（<code>1-3,5</code>）。</li>
+<li>选角度：顺时针 90° / 180° / 顺时针 270°。</li>
+<li>点「旋转并下载」，得到 <code>rotated.pdf</code>。</li>
+</ol>
+<p><strong>细节</strong></p>
+<ul>
+<li>旋转改的是页面角度，<strong>不重绘内容</strong>，所以文字仍然可选可搜索。</li>
+<li>只转某几页时，其余页保持原样。</li>
+<li>反复转同一页会累加（转两次 90° = 180°）。</li>
+</ul>
+<hr />
+<h2>功能四：压缩</h2>
+<p><img alt="压缩标签页" src="screens/04-compress.png" /></p>
+<p><strong>用途</strong>：材料超过上传限制（常见 10MB / 20MB）、邮件发不出去。</p>
+<p><strong>步骤</strong></p>
+<ol>
+<li>切到「压缩」。</li>
+<li>选档位：<strong>轻</strong> / <strong>标准</strong> / <strong>强</strong>。</li>
+<li>点「压缩并下载」，得到 <code>compressed.pdf</code>。</li>
+</ol>
+<p><strong>三档的区别</strong></p>
+<table>
+<thead>
+<tr>
+<th>档位</th>
+<th>图片最长边</th>
+<th>JPEG 质量</th>
+<th>什么时候用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>轻</td>
+<td>2200 px</td>
+<td>0.85</td>
+<td>还要印出来</td>
+</tr>
+<tr>
+<td>标准</td>
+<td>1600 px</td>
+<td>0.72</td>
+<td>屏幕看、发邮件（默认）</td>
+</tr>
+<tr>
+<td>强</td>
+<td>1100 px</td>
+<td>0.55</td>
+<td>只要能看清内容</td>
+</tr>
+</tbody>
+</table>
+<p><strong>实测</strong>：一份 3 页、含 2400×1800 照片的 PDF，从 <strong>1,203,664 字节 → 277,446 字节（-77%）</strong>，肉眼几乎看不出差别。</p>
+<p><strong>细节（重要）</strong></p>
+<ul>
+<li>只压<strong>内嵌的图片</strong>（JPEG 重新编码），文字和矢量图原样保留，所以文字依然清晰、可搜索。</li>
+<li>如果原文件本来就没有大图（纯文字 PDF），压缩后可能<strong>几乎不变小</strong>——这不是失败，是没东西可压。</li>
+<li>压缩是<strong>有损</strong>的，压完不可逆；建议保留原文件。</li>
+</ul>
+<hr />
+<h2>功能五：图片转 PDF</h2>
+<p><img alt="图片转 PDF" src="screens/09-web-img.png" /></p>
+<p><strong>用途</strong>：手机拍的文件、扫描件截图、身份证照片，要交一份 PDF。</p>
+<p><strong>步骤</strong>
+1. 拖入图片（JPG / PNG，可多选）
+2. 自动切到「图片转 PDF」，点「转成 PDF」</p>
+<p><strong>细节</strong></p>
+<ul>
+<li>每张图一页 A4，等比缩放居中，留 24pt 边距，不裁切</li>
+<li>免费版最多 5 张，Pro 不限</li>
+<li>不做 OCR：图片里的字仍是图片，不能搜索</li>
+</ul>
+<h2>免费版与 Pro</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>免费版</th>
+<th>Pro</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单次文件数</td>
+<td>3</td>
+<td>不限</td>
+</tr>
+<tr>
+<td>单次总页数</td>
+<td>50</td>
+<td>不限</td>
+</tr>
+<tr>
+<td>批量拆分（一次导出多份）</td>
+<td>✗（只出第一份）</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>合并 / 拆分 / 旋转 / 压缩</td>
+<td>✓ 全部可用</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>价格</td>
+<td>免费</td>
+<td>一次买断</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>当前版本（1.0.0）<strong>先只上免费版</strong>，界面里没有购买入口——不会出现「点了没反应」的按钮。Pro 将在接上支付后开启。</p>
+</blockquote>
+<hr />
+<h2>隐私：文件去哪了？</h2>
+<p><strong>哪也没去。</strong></p>
+<ul>
+<li>扩展<strong>没有申请网络权限</strong>，代码里没有任何上传、统计、账号逻辑；</li>
+<li>所有处理在你的浏览器内存里完成，关掉标签页就没了；</li>
+<li>唯一的本地存储（<code>storage</code> 权限）用来记住你选的档位这类偏好；</li>
+<li>唯一的外部跳转是「隐私政策」和「使用说明」两个链接，需要你自己点。</li>
+</ul>
+<p>隐私政策全文：https://zzehui.github.io/jobwatch/pdfpocket.html</p>
+<hr />
+<h2>常见问题</h2>
+<p><strong>Q：文件下载到哪了？</strong>
+浏览器默认下载目录（一般是「下载」文件夹），文件名就是上面写的那些。</p>
+<p><strong>Q：能处理带密码的 PDF 吗？</strong>
+不能。请先用阅读器去掉密码再拖进来。</p>
+<p><strong>Q：扫描版（图片型）PDF 能压缩吗？</strong>
+能，而且效果最明显——它里面全是图片。但<strong>不能 OCR</strong>，压完还是图片。</p>
+<p><strong>Q：能转 Word / 转图片吗？</strong>
+不能。这个工具只做「PDF 对 PDF」的四件事，不做格式转换。</p>
+<p><strong>Q：会很慢吗？</strong>
+纯文字文件几乎瞬间；100 页带图的大文件通常几秒到十几秒，取决于图片数量和电脑性能。处理时按钮会变成「处理中…」。</p>
+<p><strong>Q：安全吗？会不会偷偷上传？</strong>
+扩展没有网络权限——它在系统层面就发不出去，你也可以在 <code>edge://extensions</code> 里点「详细信息」核对我申请的权限只有「存储」。</p>
+<p><strong>Q：为什么拆出来只有一个文件？</strong>
+免费版只导出第一份。Pro 才批量导出。</p>
+<p><strong>Q：能撤销吗？</strong>
+不能。所有操作都生成<strong>新文件</strong>，原文件不动——所以「撤销」就是把下载的新文件删掉。</p>
+<hr />
+<h2>Pro 功能（1.0.0 起）</h2>
+<p><img alt="发票拼版标签页" src="screens/06-invoice.png" /></p>
+<p><img alt="合并时加水印" src="screens/07-watermark.png" /></p>
+<p><strong>加文字水印</strong>：勾「加水印」→ 填文字（中文可用）→ 合并。水印斜 30°、透明平铺，不挡正文；字号随页面大小自动缩放。</p>
+<p><strong>发票拼版</strong>：切到「发票拼版」→ 选多份单页 PDF → 一键拼成 A4，每页 2 张，中间带裁切虚线、左上角自动编号。适合报销、凭证归档。</p>
+<p><strong>自定义输出文件名</strong>：合并时填 <code>报告</code>，得到 <code>报告.pdf</code>。</p>
+<blockquote>
+<p>这三项是 Pro 功能；免费版看不到入口。Pro 是 39 元一次买断（不是订阅）。</p>
+</blockquote>
+<h2>已知限制</h2>
+<ol>
+<li><strong>不支持加密 PDF</strong>（有打开密码的）。</li>
+<li><strong>压缩只作用于图片</strong>，纯矢量/纯文字文件可能没变化。</li>
+<li><strong>没有 OCR</strong>，扫描件里的文字不会被识别成可搜索文本。</li>
+<li><strong>不做格式转换</strong>（PDF↔Word/图片）。</li>
+<li>单次处理在内存里完成，<strong>特别大的文件</strong>（比如 500MB）可能受浏览器内存限制。</li>
+</ol>
+<hr />
+<h2>反馈</h2>
+<p>用着别扭、少了哪个功能、哪里看不懂——直接告诉我就行，我按你说的改。</p>
+<p style="margin-top:48px;color:#6d7a89;font-size:13px">豆多科技（douduo）· 个人开发者 · 本页随扩展版本更新</p>
+</div></body></html>
