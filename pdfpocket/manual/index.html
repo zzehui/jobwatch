@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PDF 口袋 · 使用手册</title><style>
+<title>DOUDUO PDF 口袋 · 使用手册</title><style>
 :root{--bg:#0b0f14;--panel:#131a23;--line:#212c3a;--tx:#e8eef6;--dim:#93a1b3;--amber:#e8a33d;--amber-d:#2a1c07}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.75 -apple-system,"PingFang SC","Microsoft YaHei",system-ui,sans-serif}
@@ -13,8 +13,8 @@ th{background:#161f2a} blockquote{margin:14px 0;padding:10px 14px;border-left:3p
 a{color:var(--amber)} .back{display:inline-block;margin-bottom:18px;color:var(--dim);text-decoration:none;font-size:14px}
 </style></head><body><div class="wrap">
 <a class="back" href="../">← 回到 PDF 口袋</a>
-<h1>PDF 口袋 · 功能点与使用手册</h1>
-<p>版本 1.0.5 ｜ 2026-11-13</p>
+<h1>DOUDUO PDF 口袋 · 功能点与使用手册</h1>
+<p>版本 1.1.7 ｜ 2026-11-14</p>
 <hr />
 <h2>一句话</h2>
 <p><strong>在浏览器里把 PDF 合并、拆分、旋转、压缩——文件不上传，全部在你电脑上算完。</strong></p>
@@ -23,8 +23,8 @@ a{color:var(--amber)} .back{display:inline-block;margin-bottom:18px;color:var(--
 <h2>30 秒上手</h2>
 <p><strong>安装（二选一）</strong></p>
 <ol>
-<li><strong>商店版</strong>：Edge 加载项商店搜「PDF 口袋」，点安装。</li>
-<li><strong>本地版</strong>：解压 <code>pdfpocket-1.0.5-local.zip</code> → 打开 <code>edge://extensions</code>（或 <code>chrome://extensions</code>）→ 打开右上角「开发人员模式」→「加载解压缩的扩展」→ 选解压出来的文件夹。</li>
+<li><strong>商店版</strong>：Edge 加载项商店搜「DOUDUO PDF 口袋」，点安装。</li>
+<li><strong>本地版</strong>：解压 <code>pdfpocket-1.1.7-local.zip</code> → 打开 <code>edge://extensions</code>（或 <code>chrome://extensions</code>）→ 打开右上角「开发人员模式」→「加载解压缩的扩展」→ 选解压出来的文件夹。</li>
 </ol>
 <p><strong>用法</strong></p>
 <p>点工具栏里的橙色图标 → 打开工作台 → 把 PDF 拖进灰色虚线框（或点「选择 PDF」）→ 选一个标签页 → 点右下角按钮 → 文件自动下载。</p>
@@ -73,6 +73,38 @@ a{color:var(--amber)} .back{display:inline-block;margin-bottom:18px;color:var(--
 </table>
 <p><img alt="合并标签页" src="screens/01-merge.png" /></p>
 <hr />
+<h2>处理时你会看到什么</h2>
+<p>拖进文件、点右下角按钮之后：</p>
+<ol>
+<li><strong>进度条</strong>出现在底部，写着「合并中… 40% · 2/5 个文件」</li>
+<li>合并按文件数、旋转/压缩/发票按页、图片转 PDF 按张数</li>
+<li>小于 0.3 秒的任务不显示，免得一闪而过</li>
+<li><strong>完成提示</strong>给出三样东西：文件名、体积、用时</li>
+<li>例：<code>已完成：合同-合并.pdf（2 KB · 1.3s）</code></li>
+<li>压缩还会带上前后对比：<code>14.2 MB → 13.6 MB（-4% · 8.4s）</code></li>
+</ol>
+<h3>输出文件名不用手填</h3>
+<p>默认跟着第一个源文件走：</p>
+<table>
+<thead>
+<tr>
+<th>选中的文件</th>
+<th>合并后叫</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>合同.pdf</code></td>
+<td><code>合同-合并.pdf</code></td>
+</tr>
+<tr>
+<td><code>合同.pdf</code> + <code>附件.pdf</code></td>
+<td><code>合同等2个-合并.pdf</code></td>
+</tr>
+</tbody>
+</table>
+<p>拆分是 <code>合同-第1份.pdf</code>、<code>合同-第2份.pdf</code>……旋转 <code>合同-旋转.pdf</code>、压缩 <code>合同-压缩.pdf</code>。</p>
+<p>输入框里一旦有你自己打的名字，切标签、加文件都不会覆盖它；清空后恢复自动命名。</p>
 <h2>功能一：合并</h2>
 <p><strong>用途</strong>：把多个 PDF 拼成一个（简历+作品集、多张发票、扫描件拼接）。</p>
 <p><strong>步骤</strong></p>
@@ -125,6 +157,31 @@ a{color:var(--amber)} .back{display:inline-block;margin-bottom:18px;color:var(--
 <li>免费版只导出第一份，其余需要 Pro（见下）。</li>
 </ul>
 <hr />
+<h3>拆分后体积为什么没变小</h3>
+<p>分两种情况：</p>
+<table>
+<thead>
+<tr>
+<th>源文件类型</th>
+<th>拆分后</th>
+<th>例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>扫描件（每页一张图）</td>
+<td>每份约 1/N</td>
+<td>1.86 MB → 4 份各约 470 KB</td>
+</tr>
+<tr>
+<td>文字版 PDF</td>
+<td>每份接近原文件</td>
+<td>283 KB → 4 份各约 249 KB</td>
+</tr>
+</tbody>
+</table>
+<p>文字版的原因：字体是<strong>全文档共用</strong>的一份资源，每一份拆分文件都得带上它用到的整套字体，否则打开就是乱码。这不是重复打包。</p>
+<p>如果拆出来的每份都很大，工具会在完成提示里直接说明，不用自己猜。</p>
 <h2>功能三：旋转</h2>
 <p><img alt="旋转标签页" src="screens/03-rotate.png" /></p>
 <p><strong>用途</strong>：扫描件方向歪了、手机拍的横过来了。</p>
@@ -240,7 +297,7 @@ a{color:var(--amber)} .back{display:inline-block;margin-bottom:18px;color:var(--
 </tbody>
 </table>
 <blockquote>
-<p>当前版本（1.0.5）<strong>先只上免费版</strong>，界面里没有购买入口——不会出现「点了没反应」的按钮。Pro 将在接上支付后开启。</p>
+<p>当前版本（1.1.7）<strong>先只上免费版</strong>，界面里没有购买入口——不会出现「点了没反应」的按钮。Pro 将在接上支付后开启。</p>
 </blockquote>
 <hr />
 <h2>隐私：文件去哪了？</h2>
@@ -271,7 +328,7 @@ a{color:var(--amber)} .back{display:inline-block;margin-bottom:18px;color:var(--
 <p><strong>Q：能撤销吗？</strong>
 不能。所有操作都生成<strong>新文件</strong>，原文件不动——所以「撤销」就是把下载的新文件删掉。</p>
 <hr />
-<h2>Pro 功能（1.0.5 起）</h2>
+<h2>Pro 功能（1.1.0 起）</h2>
 <p><img alt="发票拼版标签页" src="screens/06-invoice.png" /></p>
 <p><img alt="合并时加水印" src="screens/07-watermark.png" /></p>
 <p><strong>加文字水印</strong>：勾「加水印」→ 填文字（中文可用）→ 合并。水印斜 30°、透明平铺，不挡正文；字号随页面大小自动缩放。</p>
@@ -292,6 +349,4 @@ a{color:var(--amber)} .back{display:inline-block;margin-bottom:18px;color:var(--
 <h2>反馈</h2>
 <p>用着别扭、少了哪个功能、哪里看不懂——直接告诉我，我按你说的改。</p>
 <p><strong>邮箱：zzhlmgj@163.com</strong></p>
-<p>扩展里也内置了入口：工作台页脚 <strong>「报告问题」</strong> → 会把版本、浏览器、最近一次报错这类诊断信息列出来（<strong>扩展不联网，不会自动上传</strong>），你复制后连同出问题的那份 PDF 一起发我即可。</p>
-<p style="margin-top:48px;color:#6d7a89;font-size:13px">豆多科技（douduo）· 个人开发者 · 本页随扩展版本更新</p>
-</div></body></html>
+<p>扩展里也内置了入口：工作台页脚 <strong>「报告问题」</strong> → 会把版本、浏览器、最近一次报错这类诊断信息列出来（<strong>扩展不联网，不会自动上传</strong>），你复制后连同出问题的那份 PDF 一起发我即可。</p></div></body></html>
