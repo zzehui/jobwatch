@@ -111,7 +111,7 @@ a{color:var(--amber)} .back{display:inline-block;margin-bottom:18px;color:var(--
 <ol>
 <li>切到「合并」，拖入两个以上 PDF。</li>
 <li>用 ↑ ↓ 调顺序——<strong>列表里的顺序就是最终页序</strong>。</li>
-<li>点「合并并下载」，得到 <code>merged.pdf</code>。</li>
+<li>点「合并并下载」，得到 <code>合同-合并.pdf</code>。</li>
 </ol>
 <p><strong>细节</strong></p>
 <ul>
@@ -190,7 +190,7 @@ a{color:var(--amber)} .back{display:inline-block;margin-bottom:18px;color:var(--
 <li>切到「旋转」。</li>
 <li>选范围：<strong>整份</strong> 或 <strong>只旋转这些页</strong>（<code>1-3,5</code>）。</li>
 <li>选角度：顺时针 90° / 180° / 顺时针 270°。</li>
-<li>点「旋转并下载」，得到 <code>rotated.pdf</code>。</li>
+<li>点「旋转并下载」，得到 <code>合同-旋转.pdf</code>（名字跟着源文件走）。</li>
 </ol>
 <p><strong>细节</strong></p>
 <ul>
@@ -206,7 +206,7 @@ a{color:var(--amber)} .back{display:inline-block;margin-bottom:18px;color:var(--
 <ol>
 <li>切到「压缩」。</li>
 <li>选档位：<strong>轻</strong> / <strong>标准</strong> / <strong>强</strong>。</li>
-<li>点「压缩并下载」，得到 <code>compressed.pdf</code>。</li>
+<li>点「压缩并下载」，得到 <code>合同-压缩.pdf</code>。</li>
 </ol>
 <p><strong>三档的区别</strong></p>
 <table>
@@ -259,6 +259,53 @@ a{color:var(--amber)} .back{display:inline-block;margin-bottom:18px;color:var(--
 <li>免费版最多 5 张，Pro 不限</li>
 <li>不做 OCR：图片里的字仍是图片，不能搜索</li>
 </ul>
+<h2>功能六：发票拼版（Pro）</h2>
+<p><img alt="发票拼版" src="screens/20-invoice-zh.png" /></p>
+<p><strong>解决什么</strong>：报销时一堆单页发票、回单，一张 A4 只放一张太浪费，打印出来还要自己剪。</p>
+<p><strong>怎么做</strong>：</p>
+<ol>
+<li>切到「发票拼版」标签</li>
+<li>把多份 PDF 拖进来（发票、回单、凭证都行；一份多页也可以，会按页依次排）</li>
+<li>选版式：目前是「A4 每页 2 张」</li>
+<li>点右下角「拼版并下载」</li>
+</ol>
+<p><strong>输出长什么样</strong>：</p>
+<ul>
+<li>一个 A4 纵向 PDF，<strong>每页 2 张</strong>，等比缩放居中</li>
+<li>两张之间一条<strong>裁切虚线</strong></li>
+<li>左上角自动标序号（1、2、3…），按你拖入的顺序</li>
+</ul>
+<p><strong>打印注意</strong>：打印时选「实际大小 / 100%」，不要选「适应页面」——缩放会让裁切线和纸张边缘对不上。</p>
+<p><strong>限制</strong>：</p>
+<ul>
+<li>只吃 PDF；图片（.jpg/.png）请先用「图片转 PDF」转一下</li>
+<li>不做 OCR，不识别金额和发票号，只是排版</li>
+<li>每页 2 张是当前唯一版式（4 张版要改代码，还没做）</li>
+</ul>
+<blockquote>
+<p>这是 Pro 功能，免费版看不到这个标签。Pro 39 元一次买断。</p>
+</blockquote>
+<h2>功能七：加文字水印（Pro）</h2>
+<p><img alt="加水印" src="screens/21-watermark-zh.png" /></p>
+<p><strong>解决什么</strong>：发给外部前打个「内部资料」「禁止外传」「机密」的标，或者给自己文件做版本标记。</p>
+<p><strong>怎么做</strong>：合并标签页 → 勾「加水印」→ 输入文字（中文可以）→ 点「合并并下载」。</p>
+<p><strong>效果</strong>：</p>
+<ul>
+<li>文字斜 30°、半透明平铺整页，<strong>不挡正文</strong></li>
+<li>字号随页面大小自动缩放；A4 上大约 34pt</li>
+<li>只画完整落在页面内的水印，不会被页边裁掉半个字</li>
+</ul>
+<p><strong>限制</strong>：水印是叠加在页面上的图层，不是真正的加密或权限控制——能被截图、能被 PDF 编辑器删掉。</p>
+<blockquote>
+<p>这是 Pro 功能。Pro 39 元一次买断（不是订阅）。</p>
+</blockquote>
+<h2>Pro 怎么激活</h2>
+<ol>
+<li>点右上角「Pro」→ 弹窗里有「已经买过？把授权码粘到下面」</li>
+<li>粘贴授权码（形如 <code>xxxxx.yyyyy</code>）→ 点「激活」</li>
+<li>右上角变成 <code>Pro</code>，发票拼版 / 水印 立即出现</li>
+</ol>
+<p>授权码<strong>不绑机器</strong>：换电脑重新粘一次即可，断网也能验证（本地验签，不联网、不注册账号）。</p>
 <h2>免费版与 Pro</h2>
 <table>
 <thead>
@@ -328,15 +375,6 @@ a{color:var(--amber)} .back{display:inline-block;margin-bottom:18px;color:var(--
 <p><strong>Q：能撤销吗？</strong>
 不能。所有操作都生成<strong>新文件</strong>，原文件不动——所以「撤销」就是把下载的新文件删掉。</p>
 <hr />
-<h2>Pro 功能（1.1.0 起）</h2>
-<p><img alt="发票拼版标签页" src="screens/06-invoice.png" /></p>
-<p><img alt="合并时加水印" src="screens/07-watermark.png" /></p>
-<p><strong>加文字水印</strong>：勾「加水印」→ 填文字（中文可用）→ 合并。水印斜 30°、透明平铺，不挡正文；字号随页面大小自动缩放。</p>
-<p><strong>发票拼版</strong>：切到「发票拼版」→ 选多份单页 PDF → 一键拼成 A4，每页 2 张，中间带裁切虚线、左上角自动编号。适合报销、凭证归档。</p>
-<p><strong>自定义输出文件名</strong>：合并时填 <code>报告</code>，得到 <code>报告.pdf</code>。</p>
-<blockquote>
-<p>这三项是 Pro 功能；免费版看不到入口。Pro 是 39 元一次买断（不是订阅）。</p>
-</blockquote>
 <h2>已知限制</h2>
 <ol>
 <li><strong>不支持加密 PDF</strong>（有打开密码的）。</li>
